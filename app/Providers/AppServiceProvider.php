@@ -15,6 +15,8 @@ use Modules\User\Repositories\WriteUserRepository;
 use Modules\User\Commands\CreateUserCommandHandler;
 use Modules\User\Repositories\ReadUserRepositoryContract;
 use Modules\User\Repositories\WriteUserRepositoryContract;
+use Modules\FeatureFlag\Clients\GrowthbookFeatureFlagClient;
+use Modules\FeatureFlag\Contracts\FeatureFlagClientInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,6 +39,11 @@ class AppServiceProvider extends ServiceProvider
                 $concrete,
             );
         }
+
+        $this->app->bind(
+            FeatureFlagClientInterface::class,
+            GrowthbookFeatureFlagClient::class,
+        );
     }
 
     /**
