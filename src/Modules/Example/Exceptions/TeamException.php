@@ -11,6 +11,8 @@ class TeamException extends InternalException
     {
         return static::new(
             ExceptionCode::LimitExceeded,
+            'Team limit exceeded',
+            'You have reached the limit of teams you can create.',
         );
     }
 

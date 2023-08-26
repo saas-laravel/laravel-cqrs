@@ -25,11 +25,14 @@ class Handler extends ExceptionHandler
     public function register(): void
     {
         $this->renderable(function (InternalException $e) {
+            $internalCode = $e->getInternalCode();
+
             return response()->json([
                 'status' => 'error',
-                'code' => $e->getInternalCode()->value,
+                'code' => $internalCode->value,
                 'message' => $e->getMessage(),
                 'description' => $e->getDescription(),
+                'details' => $internalCode->getLink(),
             ], $e->getCode());
         });
     }

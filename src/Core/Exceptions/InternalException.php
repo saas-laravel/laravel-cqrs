@@ -14,6 +14,7 @@ class InternalException extends Exception
     public static function new(
         ExceptionCode $code,
         ?string $message = null,
+        ?string $description = null,
         ?int $statusCode = null,
     ): static {
         $exception = new static(
@@ -22,7 +23,7 @@ class InternalException extends Exception
         );
 
         $exception->errorMessage = $message ?? $code->getMessage();
-        $exception->description = $code->getDescription();
+        $exception->description = $description ?? $code->getDescription();
         $exception->statusCode = $statusCode ?? $code->getStatusCode();
         $exception->internalCode = $code;
 
