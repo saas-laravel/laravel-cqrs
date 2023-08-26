@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Core\Exceptions\InternalException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -23,8 +24,16 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (InternalException $e) {
+            $code = $e->getInternalCode();
+
+            return response()->json([
+                'status' => 'error',
+                'code' => $code->value,
+                'message' => $e->getMessage(),
+                'description' => $e->getDescription(),
+                'link' => $code->getLink(),
+            ], $e->getCode());
         });
     }
 }

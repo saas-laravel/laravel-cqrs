@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use Modules\User\Exceptions\UserException;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +16,9 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', UserController::class);
+
+Route::get('docs/exceptions/{code}', fn ($code) => $code)->name('docs.exceptions');
+
+Route::get('/test', function () {
+   throw UserException::userAlreadyExists();
+});
