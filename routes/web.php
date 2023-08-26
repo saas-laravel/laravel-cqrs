@@ -15,3 +15,8 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', UserController::class);
+
+
+Route::get('/docs/exceptions/{code}', function ($code) {
+    return $code;
+})->name('docs.exceptions');
