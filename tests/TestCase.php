@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Mockery\MockInterface;
+use Core\Exceptions\InternalException;
 use Modules\FeatureFlag\Enums\FeatureFlag;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Modules\FeatureFlag\Contracts\FeatureFlagClientInterface;
@@ -35,5 +36,12 @@ abstract class TestCase extends BaseTestCase
     protected function withoutFlagEnabled(FeatureFlag $flag): self
     {
         return $this->withFeatureFlag($flag, false);
+    }
+
+    public function expectInternalException(InternalException $exception): void
+    {
+        $this->expectException($exception::class);
+        $this->expectExceptionMessage($exception->getMessage());
+        $this->expectExceptionCode($exception->getCode());
     }
 }

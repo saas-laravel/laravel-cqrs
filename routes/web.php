@@ -20,5 +20,9 @@ Route::get('/', UserController::class);
 Route::get('docs/exceptions/{code}', fn ($code) => $code)->name('docs.exceptions');
 
 Route::get('/test', function () {
+
+
    throw UserException::userAlreadyExists();
+
+
 });
