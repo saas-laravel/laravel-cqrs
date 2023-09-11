@@ -8,6 +8,7 @@ enum ExceptionCode: int
     case LimitExceeded = 10_001;
 
     case UserAlreadyExists = 11_000;
+    case AiGenerationError = 12_000;
 
     case NoAccess = 90_000;
 

@@ -5,7 +5,9 @@ namespace App\Providers;
 use App\Bus\QueryBus;
 use App\Bus\CommandBus;
 use App\Bus\IlluminateQueryBus;
+use Modules\Ai\Client\AiClient;
 use App\Bus\IlluminateCommandBus;
+use Modules\Ai\Client\OpenAiClient;
 use Illuminate\Support\ServiceProvider;
 use Modules\User\Queries\FindUserQuery;
 use Modules\User\Commands\CreateUserCommand;
@@ -31,6 +33,8 @@ class AppServiceProvider extends ServiceProvider
 
             WriteUserRepositoryContract::class => WriteUserRepository::class,
             ReadUserRepositoryContract::class => ReadUserRepository::class,
+
+            AiClient::class => OpenAiClient::class,
         ];
 
         foreach ($singletons as $abstract => $concrete) {
