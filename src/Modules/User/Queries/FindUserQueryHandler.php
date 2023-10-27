@@ -2,10 +2,10 @@
 
 namespace Modules\User\Queries;
 
-use App\Bus\Query;
+use App\Bus\QueryHandler;
 use Modules\User\Repositories\ReadUserRepository;
 
-class FindUserQueryHandler extends Query
+class FindUserQueryHandler extends QueryHandler
 {
 
     public function __construct(
